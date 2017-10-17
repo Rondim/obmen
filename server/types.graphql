@@ -1,0 +1,72 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type User @model {
+  id: ID! @isUnique
+  name: String!
+  exchanges: [Exchange!]! @relation(name: "ExchangeUser")
+
+  # Uncomment below - you can declare relations between models like this
+
+  # posts: [Post!]! @relation(name: "UserPosts")
+}
+
+type Exchange @model {
+  id: ID! @isUnique
+  number: Int! @isUnique
+  kind: EX_TYPE!
+  orders: [Order!] @relation(name: "ExchangeOrders")
+  exMetals: [ExMetal!]! @relation(name: "ExchangeExMetals")
+  user: User! @relation(name: "ExchangeUser")
+  checkNumber: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  verified: Boolean! @defaultValue(value: "false")
+  discount: Float! @defaultValue(value: 0)
+  calcRule: CalcRule! @relation(name: "ExchangeCalcRule")
+}
+
+type Order @model {
+  id: ID! @isUnique
+  exchange: Exchange! @relation(name: "ExchangeOrders")
+  weight: Float!
+  probe: PROBE!
+  cost: Int!
+}
+
+type ExMetal @model {
+  id: ID! @isUnique
+  exchange: Exchange! @relation(name: "ExchangeExMetals")
+  weight: Float!
+  probe: PROBE!
+  cost: Float!
+}
+
+type CalcRule @model {
+  id: ID! @isUnique
+  desc: String!
+  number: Int! @isUnique
+  exchanges: [Exchange!]! @relation(name: "ExchangeCalcRule")
+}
+
+enum EX_TYPE {
+  LOM
+  OBMEN
+}
+enum PROBE {
+  AU_585
+  AU_375
+  AU_500
+  AU_750
+  AU_583
+  AG_925
+}
+# Uncomment the model below as well
+
+# type Post @model {
+#   id: ID! @isUnique
+#   title: String!
+#
+#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+#   author: User! @relation(name: "UserPosts")
+# }
