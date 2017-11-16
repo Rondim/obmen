@@ -54,6 +54,7 @@ enum EX_TYPE {
   OBMEN
 }
 enum PROBE {
+  AU_9999
   AU_585
   AU_375
   AU_500
