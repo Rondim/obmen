@@ -6,7 +6,6 @@ import Paper from 'material-ui/Paper';
 import styles from './styles';
 
 const OrdersSum = ({ classes, totalWeight }) => {
-  console.log(totalWeight);
   return (
     <Paper className={classes.paper}>
       <div className={classes.totalWeight}>

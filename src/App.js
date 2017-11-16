@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import ExchangeCreate from './components/ExchangeCreate';
+import ExchangeCreate from './containers/ExchangeCreate';
 
 class App extends Component {
   render() {

@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import RemoveCircleOutline from 'material-ui-icons/RemoveCircleOutline';
 
 import styles from './styles';
-import { METALS } from './consts';
+import { METALS } from '../../consts';
 import renderTextField from '../RFrenderers/renderTextField';
 import renderSelectField from '../RFrenderers/renderSelectField';
 

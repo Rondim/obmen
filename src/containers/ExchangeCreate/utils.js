@@ -1,4 +1,4 @@
-import { METALS } from './consts.js';
+import { METALS } from '../../consts.js';
 
 export function calcTotalWeight(orders) {
   if (!orders || !Array.isArray(orders) || orders.length === 0) {

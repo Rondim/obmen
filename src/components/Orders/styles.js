@@ -1,11 +1,6 @@
 export default (theme) => {
   return {
-    root: {
-      paddingTop: '10px',
-      flexGrow: 1
-    },
-    // Orders
-    ordersInput: {
+    ordersList: {
       paddingTop: '10px'
     },
     paper: {
@@ -38,12 +33,6 @@ export default (theme) => {
       position: 'relative',
       top: '50%',
       transform: 'perspective(1px) translateY(-50%)'
-    },
-
-    // Exchange Button
-    exchangeCalc: {
-      display: 'inline-block'
     }
-
   };
 };
