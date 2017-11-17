@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 
 import styles from './styles';
 
-const OrdersSum = ({ classes, totalWeight }) => {
+const MetalsSum = ({ classes, totalWeight }) => {
   return (
     <Paper className={classes.paper}>
       <div className={classes.totalWeight}>
@@ -19,4 +19,4 @@ const OrdersSum = ({ classes, totalWeight }) => {
 
 export default compose(
   withStyles(styles)
-)(OrdersSum);
+)(MetalsSum);

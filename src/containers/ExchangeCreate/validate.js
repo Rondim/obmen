@@ -3,7 +3,8 @@ export const number = value => value ? undefined : 'Должно быть зна
 const isNumber = value => !isNaN(parseFloat(value)) && isFinite(value);
 export default (values) => {
   const errors = {
-    orders: []
+    orders: [],
+    scrapMetals: []
   };
 
   if (values.orders) {
@@ -15,6 +16,15 @@ export default (values) => {
       }
       if (!isNumber(order.cost)) {
         errors.orders[i].cost = 'Цена должна быть числом';
+      }
+    });
+  }
+  if (values.scrapMetals) {
+    values.scrapMetals.forEach((metal, i) => {
+      // TODO Переделать эту логику
+      if (!errors.scrapMetals[i]) errors.scrapMetals[i] = {};
+      if (!isNumber(metal.weight)) {
+        errors.scrapMetals[i].weight = 'Вес должен быть числом';
       }
     });
   }

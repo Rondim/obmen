@@ -23,14 +23,17 @@ const handleSubmitSuccess = (result, dispatch) => {
 
 class ExchangeCreate extends Component {
   render() {
-    const { classes, handleSubmit, orders, errors } = this.props;
-    const totalWeight = !hasWeightErrors(errors) ?
-      calcTotalWeight(orders) : false;
+    const { classes, handleSubmit, orders, scrapMetals, errors } = this.props;
+    const ordersWeight = !errors || !hasWeightErrors(errors.orders) ?
+      calcTotalWeight(orders) : false
+    const scrapMetalsWeight = !errors || !hasWeightErrors(errors.scrapMetals) ?
+      calcTotalWeight(scrapMetals) : false;
     return (
       <div className={classes.root}>
         <ExchangeForm
           handleSubmit={handleSubmit}
-          totalWeight={totalWeight}
+          ordersWeight={ordersWeight}
+          scrapMetalsWeight={scrapMetalsWeight}
         />
       </div>
     );
@@ -51,6 +54,7 @@ export default compose(
   connect(state => {
     return {
       orders: selector(state, 'orders'),
+      scrapMetals: selector(state, 'scrapMetals'),
       errors: getFormSyncErrors('exchangeCreateForm')(state)
     };
   })

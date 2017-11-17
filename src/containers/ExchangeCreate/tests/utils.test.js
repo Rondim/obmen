@@ -31,37 +31,28 @@ describe('calcTotalWeight', () => {
 });
 
 describe('hasWeightErrors', () => {
-  test('should return false if errors is undefined', () => {
+  test('should return false if errorList is undefined', () => {
     expect(hasWeightErrors(undefined)).toEqual(false);
   });
-  test('should return false if errors is {}', () => {
-    expect(hasWeightErrors({})).toEqual(false);
+  test('should return false if errorList is empty', () => {
+    expect(hasWeightErrors([])).toEqual(false);
   });
-  test('should return false if errors in orders is empty', () => {
-    expect(hasWeightErrors({ orders: [] })).toEqual(false);
-  });
-  test('should return false if no weight errors in orders', () => {
-    expect(hasWeightErrors({ orders: [{ cost: 'Ошибка' }] })).toEqual(false);
+  test('should return false if no weight errorList', () => {
+    expect(hasWeightErrors([{ cost: 'Ошибка' }])).toEqual(false);
   });
   test('should return true if has weight errors in orders', () => {
-    const errors1 = {
-      orders: [
-        { weight: 'Ошибка' },
-        { cost: 'Ошибка ' }
-      ]
-    };
-    const errors2 = {
-      orders: [
-        { weight: 'Ошибка' },
-        { weight: 'Ошибка ' }
-      ]
-    };
-    const errors3 = {
-      orders: [
-        { cost: 'Ошибка' },
-        { cost: 'Ошибка ' }
-      ]
-    };
+    const errors1 = [
+      { weight: 'Ошибка' },
+      { cost: 'Ошибка ' }
+    ];
+    const errors2 = [
+      { weight: 'Ошибка' },
+      { weight: 'Ошибка ' }
+    ];
+    const errors3 = [
+      { cost: 'Ошибка' },
+      { cost: 'Ошибка ' }
+    ];
     expect(hasWeightErrors(errors1)).toEqual(true);
     expect(hasWeightErrors(errors2)).toEqual(true);
     expect(hasWeightErrors(errors3)).toEqual(false);

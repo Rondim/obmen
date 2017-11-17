@@ -6,11 +6,14 @@ import Button from 'material-ui/Button';
 
 import styles from './styles';
 import Orders from '../Orders';
+import ScrapMetals from '../ScrapMetals';
 
-const ExchangeForm = ({ classes, handleSubmit, totalWeight}) => {
+const ExchangeForm = ({
+  classes, handleSubmit, ordersWeight, scrapMetalsWeight }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <Orders totalWeight={totalWeight}/>
+      <Orders totalWeight={ordersWeight}/>
+      <ScrapMetals totalWeight={scrapMetalsWeight}/>
       <Grid container spacing={8}>
         <Grid item xs={12}>
           <Paper className={classes.exchangeCalc}>
