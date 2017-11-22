@@ -9,6 +9,7 @@ import styles from './styles';
 import { METALS } from '../../consts';
 import renderTextField from '../RFrenderers/renderTextField';
 import renderSelectField from '../RFrenderers/renderSelectField';
+import { strToNum } from '../../containers/ExchangeCreateContainer/utils';
 
 const OrdersListItem = ({ member, index, onClick, classes }) => {
   return (
@@ -17,6 +18,7 @@ const OrdersListItem = ({ member, index, onClick, classes }) => {
         <Field
           name={`${member}.weight`}
           component={renderTextField}
+          normalize={strToNum}
          />
       </td>
       <td>
@@ -37,6 +39,7 @@ const OrdersListItem = ({ member, index, onClick, classes }) => {
         <Field
           name={`${member}.cost`}
           component={renderTextField}
+          normalize={strToNum}
          />
       </td>
       <td>

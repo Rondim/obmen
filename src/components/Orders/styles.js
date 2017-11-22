@@ -1,5 +1,11 @@
 export default (theme) => {
   return {
+    header: {
+      fontSize: '120%',
+      fontWeight: 'bold',
+      color: '#303030',
+      padding: '5px 0 0 0'
+    },
     ordersList: {
       paddingTop: '10px'
     },
@@ -10,7 +16,7 @@ export default (theme) => {
       margin: '0 auto'
     },
     thead: {
-      textAlign: 'left'
+      textAlign: 'center'
     },
     buttonIcon: {
       transform: 'scale(1.5)'

@@ -1,5 +1,7 @@
 import { calcTotalWeight } from '../utils';
 import { hasWeightErrors } from '../utils';
+import { getMetalContent } from '../utils';
+import { calcInvoiceData } from '../utils';
 
 describe('calcTotalWeight', () => {
   test('returns 0 if orders is undefined', () => {
@@ -56,5 +58,30 @@ describe('hasWeightErrors', () => {
     expect(hasWeightErrors(errors1)).toEqual(true);
     expect(hasWeightErrors(errors2)).toEqual(true);
     expect(hasWeightErrors(errors3)).toEqual(false);
+  });
+});
+
+describe('getMetalContent', () => {
+  test('return proper contents', () => {
+    expect(getMetalContent('AU_585')).toEqual(0.585);
+    expect(getMetalContent('AU_375')).toEqual(0.375);
+  });
+});
+
+describe('calcInvoiceData', () => {
+  test('proper output', () => {
+    const orders = [
+      { weight: 1.37, cost: 4000, metal: 'AU_585' },
+      { weight: 5.68, cost: 5352, metal: 'AU_375' }
+    ];
+    const scrapMetals = [
+      { weight: 1.75, metal: 'AU_585' },
+      { weight: 3, metal: 'AU_375' }
+    ];
+
+    const result = calcInvoiceData(orders, scrapMetals, 0.12);
+
+    console.log(result);
+    expect(result.length).toEqual(2);
   });
 });

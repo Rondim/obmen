@@ -9,19 +9,20 @@ import styles from './styles';
 import { METALS } from '../../consts';
 import OrdersListItem from './OrdersListItem';
 
+const defaultMetalValue = METALS[0].value;
 
-const handleAddItem = (fields, defaultValue) => {
-  fields.push(defaultValue);
+const handleAddItem = (fields) => {
+  fields.push({ metal: defaultMetalValue });
 };
 const handleDeleteItem = (fields) => (index) => {
   if (fields.length >= 2) fields.remove(index);
 };
 
 const renderMetalCostInputs = ({ fields, classes }) => {
-  const defaultValue = { metal: METALS[0].value }
-  if (fields.length === 0) fields.push(defaultValue);
+  if (fields.length === 0) fields.push({ metal: defaultMetalValue });
   return (
     <Paper className={classes.paper}>
+      <div className={classes.header}>Изделия</div>
       <div className={classes.ordersList}>
         <table className={classes.table}>
           <thead className={classes.thead}>
@@ -41,7 +42,7 @@ const renderMetalCostInputs = ({ fields, classes }) => {
           </tbody>
         </table>
         <Button
-          onClick={() => handleAddItem(fields, defaultValue)}
+          onClick={() => handleAddItem(fields)}
           className={classes.addButton}>
           <AddCircleOutline className={classes.addButtonIcon} />
         </Button>

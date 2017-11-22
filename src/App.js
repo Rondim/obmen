@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
 
-import ExchangeCreate from './containers/ExchangeCreate';
+import ExchangeCreateContainer from './containers/ExchangeCreateContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <ExchangeCreate />
+        <ExchangeCreateContainer />
       </div>
     );
   }

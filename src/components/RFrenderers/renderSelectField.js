@@ -5,11 +5,9 @@ import Select from 'material-ui/Select';
 const renderSelectField = ({
   input,
   meta,
-  defaultValue,
   children,
   ...custom
 }) => {
-  if (defaultValue) input.value = input.value || defaultValue;
   return (
     <FormControl>
       <Select

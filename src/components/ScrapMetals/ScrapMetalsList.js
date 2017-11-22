@@ -21,6 +21,7 @@ const renderScrapMetals = ({ fields, classes }) => {
   if (fields.length === 0) fields.push(defaultValue);
   return (
     <Paper className={classes.paper}>
+      <div className={classes.header}>Лом</div>
       <div className={classes.scrapMetalsList}>
         <table className={classes.table}>
           <thead className={classes.thead}>
