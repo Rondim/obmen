@@ -28,4 +28,5 @@ ReactDOM.render(
     </Provider>
   </ApolloProvider>
 , document.getElementById('root'));
+
 registerServiceWorker();

@@ -7,7 +7,7 @@ import styles from './styles';
 
 const InfoDiagram = ({ classes, discount, exchangesCost, itemsCost }) => {
   const remainder = itemsCost - discount - exchangesCost;
-  const remainderShare = remainder / itemsCost;
+  const remainderShare = remainder > 0 ? remainder / itemsCost : 0;
 
   return (
     <div>
@@ -35,7 +35,9 @@ const InfoDiagram = ({ classes, discount, exchangesCost, itemsCost }) => {
           <div className={classes.remainderText}>
             <SquareIcon/>
               <span>
-                {`${remainder} руб - доплата`}
+                {remainder >= 0 ?
+                  `${remainder} руб - доплата` :
+                  `${Math.abs(remainder)} руб - мы выплачиваем`}
               </span>
           </div>
         </div>

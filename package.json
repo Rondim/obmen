@@ -27,8 +27,8 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://rondim.github.io/obmen/",
   "devDependencies": {
+    "express": "^4.16.2",
     "gh-pages": "^1.1.0"
   }
 }

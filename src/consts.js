@@ -1,6 +1,7 @@
 export const METALS = [
   { name: 'Au585', value: 'AU_585', content: 0.585, exchange: true, reception: true, orders: true },
   { name: 'Au583', value: 'AU_583', content: 0.583, exchange: true, reception: true, orders: false },
+  { name: 'Au500', value: 'AU_500', content: 0.500, exchange: true, reception: true, orders: false },
   { name: 'Au375', value: 'AU_375', content: 0.375, exchange: true, reception: true, orders: true },
   { name: 'Au750', value: 'AU_750', content: 0.750, exchange: true, reception: true, orders: false },
   { name: 'Au999.9', value: 'AU_9999', content: 0.9999, exchange: true, reception: true, orders: false },
@@ -15,4 +16,10 @@ export const DISCOUNT_TYPES = {
   },
   order: ['Ag', 'Au', 'Pt'],
   default: 'Ag'
+};
+
+export const EXCHANGE_COSTS = {
+  highExPrice: 1950,
+  lowExPrice: 1550, 
+  metalCost: 1350
 };

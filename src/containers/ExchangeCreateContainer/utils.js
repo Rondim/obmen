@@ -1,4 +1,4 @@
-import { METALS } from '../../consts.js';
+import { METALS, EXCHANGE_COSTS } from '../../consts.js';
 
 export function calcTotalWeight(metalList) {
   if (!metalList || !Array.isArray(metalList) || metalList.length === 0) {
@@ -34,26 +34,37 @@ export function hasCostErrors(errorList) {
 }
 
 export function calcExchangeData(orders, scrapMetals, discountRate) {
+  const { highExPrice, lowExPrice, metalCost } = EXCHANGE_COSTS;
   let discount = 0,
     exchanges = [],
     itemsCost = 0;
   const scrapMetalsWeight = calcTotalWeight(scrapMetals);
   const ordersWeight = calcTotalWeight(orders);
-
+  const ordersCost = orders.reduce((sum, order) => sum += order.cost , 0);
   itemsCost = orders.reduce((sum, order) =>  {
     sum += order.cost;
     return sum;
   }, 0);
 
   if (scrapMetalsWeight >= ordersWeight && ordersWeight !== 0) {
-    // TODO вынести стоимость за грамм в отдельное место для конфигурации
-    exchanges.push({ weight: ordersWeight, gCost: 1950 });
-    exchanges.push({ weight: (scrapMetalsWeight - ordersWeight), gCost: 1550 });
+    exchanges.push({ weight: ordersWeight, gCost: highExPrice });
+
+    const leftToCover = ordersCost - ordersWeight * highExPrice;
+    const leftMetal = scrapMetalsWeight - ordersWeight;
+
+    if (leftToCover >= leftMetal * lowExPrice) {
+      exchanges.push({ weight: leftMetal, gCost: lowExPrice });
+    } else {
+      const lowPriceMetalWeight = leftToCover / lowExPrice;
+      const leftMetalToBuy = leftMetal - lowPriceMetalWeight;
+      exchanges.push({ weight: lowPriceMetalWeight, gCost: lowExPrice });
+      exchanges.push({ weight: leftMetalToBuy, gCost: metalCost });
+    }
   } else {
     discount = Math.round(discountRate * itemsCost / 10) * 10;
-    exchanges.push({ weight: scrapMetalsWeight, gCost: 1550 });
+    exchanges.push({ weight: scrapMetalsWeight, gCost: lowExPrice });
   }
-
+  console.log(exchanges);
   return {
     discount,
     exchanges,

@@ -22,13 +22,13 @@ const ExchangeInfo = ({ classes, discount, exchanges, itemsCost, hasErrors }) =>
         <Grid item xs={12}>
           <ErrorView />
         </Grid> :
-        hasExcess ?
-        <Grid item xs={12}>
-          <ExcessView
-            exchangesCost={exchangesCost}
-            itemsCost={itemsCost}
-          />
-        </Grid> :
+        // hasExcess ?
+        // <Grid item xs={12}>
+        //   <ExcessView
+        //     exchangesCost={exchangesCost}
+        //     itemsCost={itemsCost}
+        //   />
+        // </Grid> :
           <Grid container spacing={8}>
             <Grid item xs={6}>
               <InfoDiagram
