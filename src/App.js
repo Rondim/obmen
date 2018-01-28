@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import glamorous from 'glamorous';
 
-import ExchangeCreateContainer from './containers/ExchangeCreateContainer';
+import ExchangeCreate from './components/ExchangeCreate';
 
+const AppS = glamorous.div({
+  width: '768px',
+  margin: '0 auto',
+  background: '#e5e5e5',
+  textAlign: 'center'
+});
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <ExchangeCreateContainer />
-      </div>
+      <AppS>
+        <ExchangeCreate />
+      </AppS>
     );
   }
 }

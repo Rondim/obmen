@@ -4,7 +4,7 @@ const isNumber = value => !isNaN(parseFloat(value)) && isFinite(value);
 export default (values) => {
   const errors = {
     orders: [],
-    scrapMetals: []
+    metals: []
   };
 
   if (values.orders) {
@@ -19,12 +19,12 @@ export default (values) => {
       }
     });
   }
-  if (values.scrapMetals) {
-    values.scrapMetals.forEach((metal, i) => {
+  if (values.metals) {
+    values.metals.forEach((metal, i) => {
       // TODO Переделать эту логику
-      if (!errors.scrapMetals[i]) errors.scrapMetals[i] = {};
+      if (!errors.metals[i]) errors.metals[i] = {};
       if (!isNumber(metal.weight)) {
-        errors.scrapMetals[i].weight = 'Вес должен быть числом';
+        errors.metals[i].weight = 'Вес должен быть числом';
       }
     });
   }

@@ -11,3 +11,7 @@ body {
   background: #e5e5e5;
   text-align: center;
 }
+.container.root-container {
+  padding-left: 0;
+  padding-right: 0;
+}

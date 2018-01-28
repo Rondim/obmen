@@ -23,3 +23,9 @@ export const EXCHANGE_COSTS = {
   lowExPrice: 1550, 
   metalCost: 1350
 };
+
+export const METAL_PRICES = {
+  METAL_MAX_PRICE : 1950,
+  METAL_MED_PRICE : 1550,
+  METAL_MIN_PRICE : 1350
+}
