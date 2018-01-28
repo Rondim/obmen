@@ -35,6 +35,7 @@ const mapStateToProps = state => {
     exchangeDetails, 
     invoiceDetails,
     isFormValid } = calcExchangeDetails(orders, metals, 0.12, valid);
+  console.log(metalDetails, exchangeDetails, invoiceDetails, isFormValid);
   return { 
     exchangeDetailsData: { ...exchangeDetails, isFormValid },
     metalDetailsData: { ...metalDetails, isFormValid },

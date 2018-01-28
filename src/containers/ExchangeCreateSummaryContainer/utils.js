@@ -30,7 +30,10 @@ export function calcExchangeDetails(orders, metals, discPercent, valid) {
     },
     isFormValid: false
   };
-  if (!valid || !orders || !orders[0] || !orders[0].weight) return result;
+
+  if (!valid || !orders || !orders[0] || !orders[0].cost) {
+    return result;
+  }
 
   const { auWeight: auMetals } = calcMetals(metals);
   const { auWeight: auOrders, totalCost, auCost, agCost } = calcOrders(orders);
