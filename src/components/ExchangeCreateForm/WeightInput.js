@@ -16,7 +16,12 @@ class WeightInput extends Component {
     const { metalValue, input: { onChange } } = props;
     const lastMetalValue = this.lastMetalValue;
     if (metalValue !== lastMetalValue) {
-      metalValue === 'AG_925' ? onChange('0') : onChange('');
+      if (metalValue === 'AG_925') {
+        onChange('0') 
+      } 
+      if (lastMetalValue === 'AG_925') {
+        onChange('')
+      }
     }
     this.lastMetalValue  = metalValue;
   }
