@@ -5,7 +5,7 @@ export function convertToNum(value) {
   if (lastCharacter === '.' && isInt(cuttedValue)) return value;
   if (lastCharacter === ',' && isInt(cuttedValue)) return `${value.slice(0, -1)}.`;
   if (isNum(value)) {
-    return parseFloat(value);
+    return value;
   } 
   return cutToNumber(value);
 }

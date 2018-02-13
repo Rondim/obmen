@@ -74,7 +74,7 @@ export function calcOrders(orders) {
   orders.forEach(order => {
     const auContent = getMetalObj(order.metal)['content'];
     auWeight += pureTo585(auContent * order.weight);
-    totalCost += order.cost;
+    totalCost += +order.cost;
 
     if (auContent > 0) {
       auCost += order.cost;
@@ -163,7 +163,7 @@ export function calcInvoiceDetails(metals, metalCost) {
 
   const items = metals.map((item, index) => {
     let cost, costPerGram;
-    const { metal, weight } = item;
+    let { metal, weight } = item;
     if (index < metalsLen - 1) {
       cost = Math.round(
         getMetalObj(metal)['content'] * weight * avPureGramCost
@@ -173,6 +173,7 @@ export function calcInvoiceDetails(metals, metalCost) {
       cost = metalCost - currentCostSum;
     }
     costPerGram = Math.round(cost / weight);
+    weight = +weight;
 
     return {
       metal,
