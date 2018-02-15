@@ -11,10 +11,10 @@ describe('calcMetals', ()=> {
   test('works properly', ()=> {
     const metals = [
       {
-        weight: 1.69,
+        weight: '1.69',
         metal: 'AU_585'
       }, {
-        weight: 2.04,
+        weight: '2.04',
         metal: 'AU_375'
       }
     ];
@@ -27,13 +27,13 @@ describe('calcOrders', ()=> {
   test('works properly with Au', () => {
     const orders = [
       {
-        weight: 1.69,
+        weight: '1.69',
         metal: 'AU_585',
-        cost: 4000
+        cost: '4000'
       }, {
-        weight: 2.04,
+        weight: '2.04',
         metal: 'AU_375',
-        cost: 4500
+        cost: '4500'
       }
     ];
     expect(calcOrders(orders)).toEqual({
@@ -46,32 +46,38 @@ describe('calcOrders', ()=> {
   test('works properly with Ag', () => {
     const orders = [
       {
-        weight: 1.69,
+        weight: '1.69',
         metal: 'AG_925',
-        cost: 4000
-      }, {
-        weight: 2.04,
+        cost: '4000'
+      },
+      {
+        weight: '1.69',
+        metal: 'AU_585',
+        cost: '5000'
+      },
+      {
+        weight: '2.04',
         metal: 'AG_925',
-        cost: 4500
+        cost: '4500'
       }
     ];
     expect(calcOrders(orders)).toEqual({
-      auCost: 0,
-      auWeight: 0,
+      auCost: 5000,
+      auWeight: 1.69,
       agCost: 8500,
-      totalCost: 8500
+      totalCost: 13500
     });
   });
   test('works properly with Au и Ag', () => {
     const orders = [
       {
-        weight: 1.69,
+        weight: '1.69',
         metal: 'AG_925',
-        cost: 4000
+        cost: '4000'
       }, {
-        weight: 2.04,
+        weight: '2.04',
         metal: 'AU_585',
-        cost: 4500
+        cost: '4500'
       }
     ];
     expect(calcOrders(orders)).toEqual({
@@ -193,14 +199,14 @@ describe('calcExchangeDetails', () => {
   test('works', () => {
     const orders = [
       {
-        weight: 1,
+        weight: '1',
         metal: 'AU_585',
-        cost: 4000
+        cost: '4000'
       }
     ];
     const metals = [
       {
-        weight: 2,
+        weight: '2',
         metal: 'AU_585'
       }
     ];
@@ -242,13 +248,13 @@ describe('calcInvoiceDetails', () => {
   test('works', () => {
     const metals = [
       {
-        weight: 1.63,
+        weight: '1.63',
         metal: 'AU_585'
       }, {
-        weight: 2.04,
+        weight: '2.04',
         metal: 'AU_375'
       }, {
-        weight: 1.77,
+        weight: '1.77',
         metal: 'AU_500'
       }
     ];

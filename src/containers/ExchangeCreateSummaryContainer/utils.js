@@ -72,14 +72,18 @@ export function calcOrders(orders) {
     totalCost = 0;
   
   orders.forEach(order => {
-    const auContent = getMetalObj(order.metal)['content'];
-    auWeight += pureTo585(auContent * order.weight);
-    totalCost += +order.cost;
+    let { weight, cost, metal } = order;
+    weight = +weight;
+    cost = +cost;
+
+    const auContent = getMetalObj(metal)['content'];
+    auWeight += pureTo585(auContent * weight);
+    totalCost += cost;
 
     if (auContent > 0) {
-      auCost += order.cost;
+      auCost += cost;
     } else {
-      agCost += order.cost;
+      agCost += cost;
     }
   });
 
