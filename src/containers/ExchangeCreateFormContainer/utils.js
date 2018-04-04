@@ -13,11 +13,13 @@ export function calcOrdersSum(orders, errors) {
   // Суммируем стоимость и металлы в пересчете в 585 до 2 значащих цифр
   orders.forEach(order => {
     const metalShare = getMetalObj(order.metal)['content'];
-    const auContentIn585 = Math.round(order.weight * (metalShare / 0.585) * 100) / 100;
+    const auContentIn585 = order.weight * (metalShare / 0.585);
     
     totalWeight += auContentIn585;
     totalCost += +order.cost;
   });
+
+  totalWeight = (Math.round(totalWeight * 100)) / 100;
 
   return { totalWeight, totalCost, hasErrors };
 }
@@ -32,10 +34,11 @@ export function calcMetalsSum(metals, errors) {
   // Суммируем металлы в пересчете в 585 до 2 значащих цифр
   metals.forEach(metal => {
     const metalShare = getMetalObj(metal.metal)['content'];
-    const auContentIn585 = Math.round(metal.weight * (metalShare / 0.585) * 100) / 100;
-
+    const auContentIn585 = metal.weight * (metalShare / 0.585);
     totalWeight += auContentIn585;
   });
+
+  totalWeight = Math.round(totalWeight * 100) / 100;
 
   return { totalWeight, hasErrors };
 }
