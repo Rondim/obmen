@@ -3,23 +3,23 @@ import { FieldArray } from 'redux-form';
 import { Button } from 'reactstrap';
 import glamorous from 'glamorous';
 
-import OrdersListItem from './OrdersListItem';
-import { METALS } from '../../consts';
-
+import MetalsListItem from './MetalsListItem';
+import { METALS } from '../../../consts';
 
 const defaultMetalValue = METALS[0].value;
+
 
 const AddButtonS = glamorous(Button)({
   width: '30%'
 });
-const OrdersListDivS = glamorous.div({
+const MetalsListDivS = glamorous.div({
   padding: '15px 0'
 });
 const HeadingS = glamorous.h3({
   textAlign: 'left'
 });
 
-class OrdersList extends Component {
+class MetalList extends Component {
   handleDeleteItem = (fields) => (index) => {
     if (fields.length > 1) fields.remove(index);
   }
@@ -27,36 +27,35 @@ class OrdersList extends Component {
     fields.push({ metal: defaultMetalValue });
   }
 
-  renderOrdersList = ({ fields }) => {
+  renderMetalsList = ({ fields }) => {
     if (fields.length === 0) fields.push({ metal: defaultMetalValue });
     return (
-      <OrdersListDivS>
-        <HeadingS>Покупки</HeadingS>
-        {fields.map((member, index, fields) => {
-          return <OrdersListItem
-            fields={fields}
+      <MetalsListDivS>
+        <HeadingS>Лом</HeadingS>
+        {fields.map((member, index, fields) => (
+          <MetalsListItem
             key={index}
             index={index}
             member={member}
             onClick={this.handleDeleteItem(fields)}
           />
-        })}
+        ))}
         <AddButtonS
           onClick={() => this.handleAddItem(fields)}
         >
           +
-        </AddButtonS>
-      </OrdersListDivS>
+          </AddButtonS>
+      </MetalsListDivS>
     );
   }
   render() {
     return (
       <FieldArray
-        name="orders"
-        component={this.renderOrdersList}
+        name="metals"
+        component={this.renderMetalsList}
       />
     );
   }
 }
 
-export default OrdersList;
+export default MetalList;

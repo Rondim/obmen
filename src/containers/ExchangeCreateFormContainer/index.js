@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { reduxForm, formValueSelector, getFormSyncErrors } from 'redux-form';
 
-import ExchangeCreateForm from '../../components/ExchangeCreateForm';
+import ExchangeCreateForm from '../../components/ExchangeCreate/ExchangeCreateForm';
 import { calcOrdersSum, calcMetalsSum } from './utils'; 
 import { METALS } from '../../consts.js';
 // import validate from './validate';

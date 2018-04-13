@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 import glamorous from 'glamorous';
 
 import WeightInput from './WeightInput';
-import { METALS } from '../../consts';
+import { METALS } from '../../../consts';
 import { convertToNum, valNum } from './utils';
 
 const ColS = glamorous(Col)({

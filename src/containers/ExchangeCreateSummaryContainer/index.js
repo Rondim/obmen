@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { formValueSelector, isValid } from 'redux-form';
 
-import ExchangeCreateSummary from '../../components/ExchangeCreateSummary';
+import ExchangeCreateSummary from '../../components/ExchangeCreate/ExchangeCreateSummary';
 import { calcExchangeDetails } from './utils';
 
 class ExchangeCreateSummaryContainer extends Component {

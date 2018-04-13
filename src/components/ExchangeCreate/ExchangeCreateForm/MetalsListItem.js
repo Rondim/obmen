@@ -3,7 +3,7 @@ import { Row, Col, FormGroup, Button } from 'reactstrap';
 import { Field } from 'redux-form';
 import glamorous from 'glamorous';
 
-import { METALS } from '../../consts';
+import { METALS } from '../../../consts';
 import { convertToNum, valNum } from './utils';
 import WeightInput from './WeightInput';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
 
-import { METAL_PRICES } from '../../consts';
+import { METAL_PRICES } from '../../../consts';
 const {
   METAL_MAX_PRICE,
   METAL_MED_PRICE,
