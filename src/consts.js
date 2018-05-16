@@ -19,13 +19,13 @@ export const DISCOUNT_TYPES = {
 };
 
 export const EXCHANGE_COSTS = {
-  highExPrice: 1950,
+  highExPrice: 2250,
   lowExPrice: 1550, 
   metalCost: 1350
 };
 
 export const METAL_PRICES = {
-  METAL_MAX_PRICE : 1950,
+  METAL_MAX_PRICE : 2250,
   METAL_MED_PRICE : 1550,
   METAL_MIN_PRICE : 1350
 }
