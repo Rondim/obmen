@@ -10,13 +10,28 @@ import { convertToNum, valNum } from './utils';
 const ColS = glamorous(Col)({
   padding: '0 !important'
 });
+
+const Checkbox = ({ input, meta, rest }) => {
+  const { onChange: makeChange, value } = input;
+  return <input type="checkbox" onChange={() => makeChange(!value)} />;
+};
   
 class OrderListItem extends Component {
   render() {
     const { member, index, onClick } = this.props;
     return (
       <Row>
-        <Col xs="4">
+        <Col xs="1">
+          <FormGroup>
+            <Field
+              name={`${member}.isWedding`}
+              component={Checkbox}
+              className="form-control"
+              member={member}
+            />
+          </FormGroup>
+        </Col>
+        <Col xs="3">
           <FormGroup>
             <Field
               name={`${member}.weight`}
@@ -32,7 +47,7 @@ class OrderListItem extends Component {
         <Col xs="3">
           <FormGroup>
             <Field
-              name={`${member}.metal`}
+              name={`${member}.probe`}
               component="select"
               className="form-control"
             >

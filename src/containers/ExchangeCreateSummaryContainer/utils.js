@@ -1,9 +1,16 @@
+import { AU_SHARES } from "../../consts";
 import { getMetalObj } from '../../utils';
 import { METAL_PRICES } from '../../consts';
 
-const { 
-  METAL_MAX_PRICE, 
-  METAL_MED_PRICE , 
+export function getAuShare(probe) {
+  if (!probe || !AU_SHARES[probe]) return 0;
+
+  return AU_SHARES[probe];
+}
+
+const {
+  METAL_MAX_PRICE,
+  METAL_MED_PRICE,
   METAL_MIN_PRICE } = METAL_PRICES;
 
 export function calcExchangeDetails(orders, metals, discPercent, valid) {
@@ -39,7 +46,7 @@ export function calcExchangeDetails(orders, metals, discPercent, valid) {
   const { auWeight: auOrders, totalCost, auCost, agCost } = calcOrders(orders);
 
 
-  const { metalDetails, ...exchangeDetails } = calcDetails({ 
+  const { metalDetails, ...exchangeDetails } = calcDetails({
     auMetals, auOrders, totalCost, auCost, agCost
   }, discPercent);
 
@@ -47,11 +54,11 @@ export function calcExchangeDetails(orders, metals, discPercent, valid) {
 
   const invoiceDetails = calcInvoiceDetails(metals, metalCost);
 
-  return { 
-    exchangeDetails, 
-    metalDetails, 
-    invoiceDetails, 
-    isFormValid: true 
+  return {
+    exchangeDetails,
+    metalDetails,
+    invoiceDetails,
+    isFormValid: true
   };
 }
 
@@ -65,12 +72,12 @@ export function calcMetals(metals) {
 }
 
 export function calcOrders(orders) {
-  let 
-    auCost = 0, 
-    auWeight = 0, 
+  let
+    auCost = 0,
+    auWeight = 0,
     agCost = 0,
     totalCost = 0;
-  
+
   orders.forEach(order => {
     let { weight, cost, metal } = order;
     weight = +weight;
@@ -92,7 +99,7 @@ export function calcOrders(orders) {
 
 export function calcDetails(exchangeData, discPercent) {
   const { auMetals, auOrders, totalCost, agCost } = exchangeData;
-  let 
+  let
     discount = 0,
     toPay = 0,
     toIssue = 0,
@@ -115,7 +122,7 @@ export function calcDetails(exchangeData, discPercent) {
     const discountedPrice = totalCost - discount;
     const leftMetals = auMetals - auOrders;
     const leftCost = discountedPrice - maxPriceSum;
-    if ( leftCost >= leftMetals * METAL_MED_PRICE ) {
+    if (leftCost >= leftMetals * METAL_MED_PRICE) {
       medPriceSum = Math.round(leftMetals * METAL_MED_PRICE);
       medPriceWeight = leftMetals;
     } else {
@@ -142,7 +149,7 @@ export function calcDetails(exchangeData, discPercent) {
     metalCost,
     toPay,
     toIssue,
-    metalDetails : {
+    metalDetails: {
       metalCost,
       maxPriceWeight,
       maxPriceSum,

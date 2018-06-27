@@ -19,13 +19,42 @@ export const DISCOUNT_TYPES = {
 };
 
 export const EXCHANGE_COSTS = {
-  highExPrice: 2250,
+  highExPrice: 1950,
   lowExPrice: 1550, 
   metalCost: 1350
 };
 
 export const METAL_PRICES = {
-  METAL_MAX_PRICE : 2250,
-  METAL_MED_PRICE : 1550,
-  METAL_MIN_PRICE : 1350
-}
+  'purchase_1350': 1350,
+  'exchange_1500': 1500,
+  'exchange_1990': 1990,
+  'exchange_2090': 2090,
+  'exchange_2250': 2250
+};
+
+export const AU_SHARES = {
+  'AU_585': 0.585,
+  'AU_583': 0.583,
+  'AU_500': 0.500,
+  'AU_375': 0.375,
+  'AU_750': 0.750,
+  'AU_9999': 0.9999,
+  'AU_900': 0.900,
+  'AG_925': 0
+}; 
+
+export const summerCompanyConfig = {
+  PRICE_BEFORE_0: METAL_PRICES['exchange_1990'],
+  PRICE_BEFORE_3: METAL_PRICES['exchange_2090'],
+  PRICE_BEFORE_5: METAL_PRICES['exchange_2250'],
+  PRICE_AFTER: METAL_PRICES['exchange_1500'],
+  PRICE_PURCHASE: METAL_PRICES['purchase_1350']
+};
+
+export const STONES_LOSSES = 0.07;
+
+export const discountsForMembers = {
+  'Ag': 0.12,
+  'Au': 0.15,
+  'Pt': 0.18
+};

@@ -11,10 +11,27 @@ const ColS = glamorous(Col)({
   padding: '0 !important'
 });
 
+const Checkbox = ({ input, meta, rest }) => {
+  const { onChange: makeChange, value } = input;
+  return <input type="checkbox" onChange={() => makeChange(!value)} />;
+};
+
+
 const MetalsListItem = ({ member, index, onClick }) => {
   return (
     <Row>
-      <Col xs="4">
+      <Col xs="1">
+        <FormGroup>
+          <Field
+            name={`${member}.hasStones`}
+            placeholder="Масса"
+            component={Checkbox}
+            className="form-control"
+            member={member}
+          />
+        </FormGroup>
+      </Col>
+      <Col xs="3">
         <FormGroup>
           <Field
             name={`${member}.weight`}
@@ -30,7 +47,7 @@ const MetalsListItem = ({ member, index, onClick }) => {
       <Col xs="3">
         <FormGroup>
           <Field
-            name={`${member}.metal`}
+            name={`${member}.probe`}
             component="select"
             className="form-control"
           >

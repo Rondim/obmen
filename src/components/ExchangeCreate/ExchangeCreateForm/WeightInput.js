@@ -40,5 +40,5 @@ class WeightInput extends Component {
 }
 
 export default formValues(({ member }) => {
-  return { metalValue: `${member}.metal` };
+  return { metalValue: `${member}.probe` };
 })(WeightInput);

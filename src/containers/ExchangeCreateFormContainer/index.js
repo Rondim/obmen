@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import { reduxForm, formValueSelector, getFormSyncErrors } from 'redux-form';
 
 import ExchangeCreateForm from '../../components/ExchangeCreate/ExchangeCreateForm';
+import ExchangeCreateDCardChooser from '../../components/ExchangeCreate/ExchangeCreateDCardChooser';
 import { calcOrdersSum, calcMetalsSum } from './utils'; 
-import { METALS } from '../../consts.js';
-// import validate from './validate';
+import { METALS, DISCOUNT_TYPES } from '../../consts.js';
+
 
 class ExchangeCreateFormContainer extends Component {
   static propTypes = {
@@ -16,14 +17,16 @@ class ExchangeCreateFormContainer extends Component {
   }
   componentWillMount() {
     this.props.initialize({
-      orders: [{ metal: METALS[0].value }],
-      metals: [{ metal: METALS[0].value }],
+      orders: [{ probe: METALS[0].value, isWedding: false }],
+      metals: [{ probe: METALS[0].value, hasStones: false }],
+      discountCard: DISCOUNT_TYPES.default
     });
   }
   render() {
     const { ordersSumData, metalsSumData } = this.props;
     return (
       <form>
+        <ExchangeCreateDCardChooser />
         <ExchangeCreateForm
           ordersSumData={ordersSumData}
           metalsSumData={metalsSumData}

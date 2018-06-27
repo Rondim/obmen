@@ -12,7 +12,7 @@ export function calcOrdersSum(orders, errors) {
 
   // Суммируем стоимость и металлы в пересчете в 585 до 2 значащих цифр
   orders.forEach(order => {
-    const metalShare = getMetalObj(order.metal)['content'];
+    const metalShare = getMetalObj(order.probe)['content'];
     const auContentIn585 = order.weight * (metalShare / 0.585);
     
     totalWeight += auContentIn585;
@@ -32,9 +32,10 @@ export function calcMetalsSum(metals, errors) {
   }
 
   // Суммируем металлы в пересчете в 585 до 2 значащих цифр
-  metals.forEach(metal => {
-    const metalShare = getMetalObj(metal.metal)['content'];
-    const auContentIn585 = metal.weight * (metalShare / 0.585);
+  metals.forEach(({ probe, weight, hasStones }) => {
+    const metalShare = getMetalObj(probe)['content'];
+    const k = hasStones ? 0.93 : 1;
+    const auContentIn585 = k * weight * (metalShare / 0.585);
     totalWeight += auContentIn585;
   });
 
@@ -42,69 +43,6 @@ export function calcMetalsSum(metals, errors) {
 
   return { totalWeight, hasErrors };
 }
-// export function hasOrdersErrors(orders) {
-//   let hasErrors = false;
-//   // Проверяем, что orders массив такой структуры
-//   // [{ weight: 1.37, metal: 'AU_585", cost: 3380 }]
-//   try {
-//     orders.forEach(order => {
-//       if (!(order.weight && order.metal && order.cost)) {
-//         hasErrors = true;
-//       }
-//     });
-//   } catch (error) {
-//     return true;
-//   }
-
-//   // Проверяем, что weight, metal
-//   // являются разрешенными значениями
-//   orders.forEach(order => {
-//     if (!isNum(order.weight) || !isMetal(order.metal) || !isNum(order.cost)) {
-//       hasErrors = true;
-//     }
-//   });
-
-//   return hasErrors;
-
-  
-// }
-
-// export function hasMetalsErrors(metals) {
-//   let hasErrors = false;
-//   // Проверяем, что metals массив такой структуры
-//   // [{ weight: 1.37, metal: 'AU_585" }]
-//   try {
-//     metals.forEach(order => {
-//       if (!(order.weight && order.metal)) {
-//         hasErrors = true;
-//       }
-//     });
-//   } catch (error) {
-//     return true;
-//   }
-
-//   // Проверяем, что weight, metal
-//   // являются разрешенными значениями
-//   metals.forEach(order => {
-//     if (!isNum(order.weight) || !isMetal(order.metal)) {
-//       hasErrors = true;
-//     }
-//   });
-
-//   return hasErrors;
-// }
-
-// //Вспомогательные функции
-
-// // Проверяет на число
-// function isNum(n) {
-//   return !isNaN(parseFloat(n)) && isFinite(n);
-// }
-
-// // Проверяет значение соответствует какому-нибудь металлу
-// function isMetal(value) {
-//   return METALS.some(metal => value === metal.value);
-// }
 
 
 

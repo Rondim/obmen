@@ -4,22 +4,21 @@ import { connect } from 'react-redux';
 import { formValueSelector, isValid } from 'redux-form';
 
 import ExchangeCreateSummary from '../../components/ExchangeCreate/ExchangeCreateSummary';
-import { calcExchangeDetails } from './utils';
+import calcData from './calcData';
 
 class ExchangeCreateSummaryContainer extends Component {
   static propTypes = {
-    exchangeDetailsData: PropTypes.object,
-    metalDetailsData: PropTypes.object,
-    invoiceDetailsData: PropTypes.object,
-    isFormValid: PropTypes.bool
+    exchangeDetails: PropTypes.object,
+    metalDetails: PropTypes.object,
+    invoiceDetails: PropTypes.object
   }
   render() {
-    const { exchangeDetailsData, metalDetailsData, invoiceDetailsData } = this.props;
+    const { exchangeDetails, metalDetails, invoiceDetails } = this.props;
     return (
       <ExchangeCreateSummary 
-        exchangeDetailsData={exchangeDetailsData}
-        metalDetailsData={metalDetailsData}
-        invoiceDetailsData={invoiceDetailsData}
+        exchangeDetails={exchangeDetails}
+        metalDetails={metalDetails}
+        invoiceDetails={invoiceDetails}
       />
     );
   }
@@ -29,17 +28,19 @@ const selector = formValueSelector('ExchangeCreateForm');
 
 const mapStateToProps = state => {
   const valid = isValid('ExchangeCreateForm')(state);
-  const { orders, metals } = selector(state, 'orders', 'metals');
   const { 
-    metalDetails, 
-    exchangeDetails, 
-    invoiceDetails,
-    isFormValid } = calcExchangeDetails(orders, metals, 0.12, valid);
-  console.log(metalDetails, exchangeDetails, invoiceDetails, isFormValid);
+    orders, metals: scrapMetals, discountCard: memberType
+  } = selector(state, 'orders', 'metals', 'discountCard');
+
+  const { dataForView: {
+    exchangeDetails, metalDetails, invoiceDetails
+  } } = calcData({ scrapMetals, orders, memberType, valid });
+
+  console.log(metalDetails, exchangeDetails, invoiceDetails, valid);
   return { 
-    exchangeDetailsData: { ...exchangeDetails, isFormValid },
-    metalDetailsData: { ...metalDetails, isFormValid },
-    invoiceDetailsData: { ...invoiceDetails, isFormValid }
+    exchangeDetails: {...exchangeDetails, isFormValid: valid}, 
+    metalDetails: { ...metalDetails, isFormValid: valid }, 
+    invoiceDetails: { ...invoiceDetails, isFormValid: valid }
   };
 };
 

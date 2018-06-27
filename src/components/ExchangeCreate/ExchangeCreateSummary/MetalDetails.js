@@ -1,12 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
-
-import { METAL_PRICES } from '../../../consts';
-const {
-  METAL_MAX_PRICE,
-  METAL_MED_PRICE,
-  METAL_MIN_PRICE } = METAL_PRICES;
+import _ from 'lodash';
 
 const RootDivS = glamorous.div({
   textAlign: 'left',
@@ -22,35 +17,23 @@ const HrS = glamorous.hr({
 });
 
 const MetalDetails = props => {
-  const { metalCost, maxPriceSum, maxPriceWeight, 
-    medPriceSum, medPriceWeight, minPriceSum, minPriceWeight,
-    isFormValid } = props;
+  const { metalsCost = 0, metalsWithCosts = [], isFormValid } = props;
   return (
     <RootDivS>
       <h3>Стоимость лома</h3>
       {isFormValid ?
         <div>
-          {maxPriceSum === 0 ? null :
-            <div>
-              {`${maxPriceWeight} г по ${METAL_MAX_PRICE} р = ${maxPriceSum}`}
+          {metalsWithCosts.map(({ weight, gramCost, cost }, index) => (
+            <div key={index}>
+              {`${_.round(weight, 2)} г по ${_.round(gramCost)} р = ${_.round(cost)}`}
             </div>
-          }
-          {medPriceSum === 0 ? null :
-            <div>
-              {`${medPriceWeight} г по ${METAL_MED_PRICE} р = ${medPriceSum}`}
-            </div>
-          }
-          {minPriceSum === 0 ? null :
-            <div>
-              {`${minPriceWeight} г по ${METAL_MIN_PRICE} р = ${minPriceSum}`}
-            </div>
-          }
+          ))}
           <HrS />
-          {metalCost === 0 ? null: 
+          {metalsCost === 0 ? null: 
             <div>
               {`Округленная стоимость лома = `}
               <strong>
-                {metalCost}
+                {_.round(metalsCost)}
               </strong>
             </div>
           }
@@ -66,13 +49,8 @@ const MetalDetails = props => {
 };
 
 MetalDetails.propTypes = {
-  metalCost: PropTypes.number,
-  maxPriceWeight: PropTypes.number,
-  maxPriceSum: PropTypes.number,
-  medPriceWeight: PropTypes.number,
-  medPriceSum: PropTypes.number,
-  minPriceWeight: PropTypes.number,
-  minPriceSum: PropTypes.number,
+  metalsCost: PropTypes.number,
+  metalsWithCosts: PropTypes.array,
   isFormValid: PropTypes.bool
 };
 

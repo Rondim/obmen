@@ -24,7 +24,7 @@ class MetalList extends Component {
     if (fields.length > 1) fields.remove(index);
   }
   handleAddItem = (fields) => {
-    fields.push({ metal: defaultMetalValue });
+    fields.push({ probe: defaultMetalValue });
   }
 
   renderMetalsList = ({ fields }) => {

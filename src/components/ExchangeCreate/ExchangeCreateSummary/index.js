@@ -6,46 +6,39 @@ import ExchangeDetails from './ExchangeDetails';
 import MetalDetails from './MetalDetails';
 import InvoiceDetails from './InvoiceDetails';
 
-
-const ExchangeCreateSummary = ({ 
-  exchangeDetailsData, metalDetailsData, invoiceDetailsData }) => {
+const ExchangeCreateSummary = ({ exchangeDetails, metalDetails, invoiceDetails }) => {
   return (
     <Row>
       <Col xs="6">
-        <ExchangeDetails {...exchangeDetailsData} />
+        <ExchangeDetails {...exchangeDetails} />
       </Col>
       <Col xs="6">
-        <MetalDetails {...metalDetailsData} />
+        <MetalDetails {...metalDetails} />
       </Col>
       <Col xs="12">
-        <InvoiceDetails {...invoiceDetailsData} />
+        <InvoiceDetails {...invoiceDetails} />
       </Col>
     </Row>
   );
 };
 
 ExchangeCreateSummary.propTypes = {
-  exchangeDetailsData: PropTypes.shape({
+  exchangeDetails: PropTypes.shape({
     totalCost: PropTypes.number,
     discount: PropTypes.number,
-    metalCost: PropTypes.number,
+    metalsCost: PropTypes.number,
     toPay: PropTypes.number,
     toIssue: PropTypes.number,
     isFormValid: PropTypes.bool
   }),
-  metalDetailsData: PropTypes.shape({
+  metalDetails: PropTypes.shape({
     metalCost: PropTypes.number,
-    maxPriceWeight: PropTypes.number,
-    maxPriceSum: PropTypes.number,
-    medPriceWeight: PropTypes.number,
-    medPriceSum: PropTypes.number,
-    minPriceWeight: PropTypes.number,
-    minPriceSum: PropTypes.number,
+    metalsWithCosts: PropTypes.array,
     isFormValid: PropTypes.bool
   }),
-  invoiceDetailsData: PropTypes.shape({
-    items: PropTypes.array,
-    metalCost: PropTypes.number,
+  invoiceDetails: PropTypes.shape({
+    invoiceMetals: PropTypes.array,
+    metalsCost: PropTypes.number,
     isFormValid: PropTypes.bool
   })
 };

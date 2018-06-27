@@ -9,7 +9,8 @@ const DivS = glamorous.div({
   width: '768px',
   margin: '0 auto',
   background: '#e5e5e5',
-  textAlign: 'center'
+  textAlign: 'center',
+  paddingTop: '8px'
 });
 
 const ExchangeCreate = () => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
+import _ from 'lodash';
 
 const RootDivS = glamorous.div({
   textAlign: 'left',
@@ -10,7 +11,7 @@ const RootDivS = glamorous.div({
 });
 
 const ExchangeDetails = props => {
-  const { totalCost, discount, metalCost, toPay, toIssue, isFormValid } = props;
+  const { totalCost = 0, discount = 0, metalsCost = 0, toPay = 0, toIssue = 0, isFormValid } = props;
   return (
     <RootDivS>
       <h3>Детали обмена</h3>
@@ -18,27 +19,27 @@ const ExchangeDetails = props => {
         <div>
           {totalCost === 0 ? null :
             <div>
-              {`Стоимость покупок = `}<strong>{totalCost}</strong>
+              {`Стоимость покупок = `}<strong>{_.round(totalCost)}</strong>
             </div>
           }
           {discount === 0 ? null :
             <div>
-              {`Скидка = `}<strong>{discount}</strong>
+              {`Скидка = `}<strong>{_.round(discount)}</strong>
             </div>
           }
-          {metalCost === 0 ? null :
+          {metalsCost === 0 ? null :
             <div>
-              {`Стоимость лома = `}<strong>{metalCost}</strong>
+              {`Стоимость лома = `}<strong>{_.round(metalsCost)}</strong>
             </div>
           }
           {toPay === 0 ? null :
             <div>
-              {`Необходимо доплатить = `}<strong>{toPay}</strong>
+              {`Необходимо доплатить = `}<strong>{_.round(toPay, -1)}</strong>
             </div>
           }
           {toIssue === 0 ? null :
             <div>
-              {`К выплате = `}<strong>{toIssue}</strong>
+              {`К выплате = `}<strong>{_.round(toIssue, -1)}</strong>
             </div>
           }
         </div>
