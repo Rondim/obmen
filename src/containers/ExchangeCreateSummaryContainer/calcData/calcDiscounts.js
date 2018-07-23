@@ -55,6 +55,23 @@ export const calcAuDiscount = data => discounts => {
   return nextDiscounts;   
 };
 
+export const calcNotGivenDiscounts = data => {
+  const { orders, discountPercent, metalsWeight585, criticalWeight585 } = data;
+
+  const auOrders = orders.filter(({ probe, isWedding }) => {
+    return !isWedding && getAuShare(probe) !== 0;
+  });
+  const ordersCost = auOrders.reduce((s, { cost }) => s + cost, 0);
+
+  const ordersShareForDiscount = metalsWeight585 < criticalWeight585
+    ? (criticalWeight585 - metalsWeight585) / criticalWeight585
+    : 0
+  ;
+  const ordersShareWithoutDiscount = 1 - ordersShareForDiscount;
+
+  return ordersShareWithoutDiscount * discountPercent * ordersCost;
+};
+
 
 export default function calcDiscounts(data) {
   const {
@@ -71,6 +88,7 @@ export default function calcDiscounts(data) {
 
   const discounts = getDiscounts(startDiscounts);
   const totalDiscount = discounts.reduce((s, { value }) => s + value, 0);
+  const notGivenDiscounts = calcNotGivenDiscounts(data);
 
-  return { ...data, discounts, totalDiscount };
+  return { ...data, discounts, totalDiscount, notGivenDiscounts };
 }

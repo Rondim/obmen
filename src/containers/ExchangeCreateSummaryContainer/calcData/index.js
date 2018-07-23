@@ -26,7 +26,8 @@ export const set_dataForView = data => {
     metalsCost,
     ordersCostWithDiscount,
     metalsWithCosts,
-    invoiceMetals
+    invoiceMetals,
+    notGivenDiscounts
   } = data;
 
   if (!ordersCost) {
@@ -54,7 +55,8 @@ export const set_dataForView = data => {
     discount: discountCorrected,
     metalsCost: metalsCostRoundedBy10,
     toPay: toPayForView,
-    toIssue: toIssueForView
+    toIssue: toIssueForView,
+    notGivenDiscounts
   };
 
   const metalDetails = {

@@ -11,7 +11,7 @@ const RootDivS = glamorous.div({
 });
 
 const ExchangeDetails = props => {
-  const { totalCost = 0, discount = 0, metalsCost = 0, toPay = 0, toIssue = 0, isFormValid } = props;
+  const { totalCost = 0, discount = 0, metalsCost = 0, toPay = 0, toIssue = 0, notGivenDiscounts = 0, isFormValid } = props;
   return (
     <RootDivS>
       <h3>Детали обмена</h3>
@@ -40,6 +40,11 @@ const ExchangeDetails = props => {
           {toIssue === 0 ? null :
             <div>
               {`К выплате = `}<strong>{_.round(toIssue, -1)}</strong>
+            </div>
+          }
+          {notGivenDiscounts === 0 ? null :
+            <div>
+              {`Невыданные скидки `}<strong>{_.round(notGivenDiscounts, -1)}</strong>
             </div>
           }
         </div>

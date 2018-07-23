@@ -29,7 +29,8 @@ ExchangeCreateSummary.propTypes = {
     metalsCost: PropTypes.number,
     toPay: PropTypes.number,
     toIssue: PropTypes.number,
-    isFormValid: PropTypes.bool
+    isFormValid: PropTypes.bool,
+    notGivenDiscounts: PropTypes.number
   }),
   metalDetails: PropTypes.shape({
     metalCost: PropTypes.number,
