@@ -51,6 +51,12 @@ export const summerCompanyConfig = {
   PRICE_PURCHASE: METAL_PRICES['purchase_1350']
 };
 
+export const usualConfig = {
+  PRICE_BEFORE: 2050,
+  PRICE_AFTER: 1500,
+  PRICE_PURCHASE: 1350
+};
+
 export const STONES_LOSSES = 0.07;
 
 export const discountsForMembers = {

@@ -1,6 +1,6 @@
 import fp from 'lodash/fp';
 import _ from 'lodash';
-import { summerCompanyConfig, discountsForMembers, STONES_LOSSES } from '../../../consts'
+import { usualConfig, discountsForMembers, STONES_LOSSES } from '../../../consts'
 import {
   set_scrapMetalsCleaned,
   set_metalsWeight585,
@@ -116,7 +116,7 @@ export default function ({ scrapMetals, orders, memberType, valid }) {
   const initialData = {
     scrapMetals: scrapMetalsNew,
     orders: ordersNew,
-    config: summerCompanyConfig,
+    config: usualConfig,
     discountPercent: discountsForMembers[memberType],
     stonesLosses: STONES_LOSSES
   };

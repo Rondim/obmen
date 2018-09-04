@@ -6,20 +6,13 @@ export const beforeCalc = data => metals => {
     criticalWeight585 = 0,
     ordersCostWithDiscount = 0,
     config: {
-      PRICE_BEFORE_0,
-      PRICE_BEFORE_3,
-      PRICE_BEFORE_5
+      PRICE_BEFORE
     }
   } = data;
 
   if (metalsWeight585 === 0 || criticalWeight585 === 0) return [];
 
-  const gramCost = ( metalsWeight585 < 3 )
-    ? PRICE_BEFORE_0
-    : ( metalsWeight585 < 5 )
-      ? PRICE_BEFORE_3
-      : PRICE_BEFORE_5
-  ;
+  const gramCost = PRICE_BEFORE;
 
   const beforeWeight = metalsWeight585 < criticalWeight585
     ? metalsWeight585
@@ -37,9 +30,6 @@ export const afterCalc = data => metals => {
     criticalWeight585 = 0,
     ordersCostWithDiscount = 0,
     config: {
-      PRICE_BEFORE_0,
-      PRICE_BEFORE_3,
-      PRICE_BEFORE_5,
       PRICE_AFTER,
       PRICE_PURCHASE
     }
