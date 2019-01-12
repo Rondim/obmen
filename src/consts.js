@@ -52,9 +52,9 @@ export const summerCompanyConfig = {
 };
 
 export const usualConfig = {
-  PRICE_BEFORE: 2050,
+  PRICE_BEFORE: 2250,
   PRICE_AFTER: 1500,
-  PRICE_PURCHASE: 1350
+  PRICE_PURCHASE: 1400
 };
 
 export const STONES_LOSSES = 0.07;
