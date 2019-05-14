@@ -1,5 +1,13 @@
 import fp from 'lodash/fp';
 
+const getGramCostForPriceBefore = (PRICE_BEFORE_STANDART, criticalWeight585) => {
+  if (criticalWeight585 >= 10) return 2500;
+  if (criticalWeight585 >= 5) return 2350;
+  if (criticalWeight585 >= 2) return 2300;
+
+  return PRICE_BEFORE_STANDART;
+}
+
 export const beforeCalc = data => metals => {
   const { 
     metalsWeight585 = 0,
@@ -12,7 +20,7 @@ export const beforeCalc = data => metals => {
 
   if (metalsWeight585 === 0 || criticalWeight585 === 0) return [];
 
-  const gramCost = PRICE_BEFORE;
+  const gramCost = getGramCostForPriceBefore(PRICE_BEFORE, criticalWeight585) ;
 
   const beforeWeight = metalsWeight585 < criticalWeight585
     ? metalsWeight585
